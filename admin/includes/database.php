@@ -38,7 +38,4 @@ class Database
 
 $database = new Database();
 
-if ($database->connection) {
-  echo "database connected successfuly";
-}
 ?>
