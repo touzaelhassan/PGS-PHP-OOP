@@ -4,7 +4,7 @@
 
 <?php
 
-$query = User::getUserById(1);
+$query = User::get_user_by_id(2);
 $user = mysqli_fetch_assoc($query);
 
 echo "<pre>";
