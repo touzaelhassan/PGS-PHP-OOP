@@ -4,13 +4,11 @@
 
 <?php
 
-// $user = new User();
-// $query = $user->getUsers();
-$query = User::getUsers();
-$users = mysqli_fetch_all($query, MYSQLI_ASSOC);
+$query = User::getUserById(1);
+$user = mysqli_fetch_assoc($query);
 
 echo "<pre>";
-print_r($users);
+print_r($user);
 echo "</pre>";
 
 ?>
