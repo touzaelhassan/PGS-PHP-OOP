@@ -13,26 +13,32 @@ class Database
 
   public function open_database_connection()
   {
-    $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    // $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
   }
 
   public function query($sql)
   {
-    $query = mysqli_query($this->connection, $sql);
+    $query = $this->connection->query($sql);
     return $query;
   }
 
   private function confirm_query($query)
   {
     if (!$query) {
-      die("Query faild !");
+      die("Query faild !" . $this->connection->error);
     }
   }
 
   public function escape_string($string)
   {
-    $escaped_string = mysqli_escape_string($this->connection, $string);
+    $escaped_string = $this->connection->real_escape_string($string);
     return $escaped_string;
+  }
+
+  public function the_insert_id()
+  {
+    return $this->connection->insert_id;
   }
 }
 
