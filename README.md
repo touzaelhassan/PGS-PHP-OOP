@@ -1,1 +1,1 @@
-# photogalleryusingphp-oop
+# PHOTO GALLERY SYSTEM USING PHP-OOP

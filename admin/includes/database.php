@@ -13,7 +13,6 @@ class Database
 
   public function open_database_connection()
   {
-    // $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
   }
 
