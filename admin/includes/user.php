@@ -28,14 +28,20 @@ class User
 
   public static function instantiation($db_user)
   {
-    $user_object = new self;
+    $user = new self;
 
-    $user_object->user_id = $db_user["user_id"];
-    $user_object->user_name = $db_user["user_name"];
-    $user_object->user_password = $db_user["user_password"];
-    $user_object->first_name = $db_user["first_name"];
-    $user_object->last_name = $db_user["last_name"];
+    foreach ($db_user as $key => $value) {
+      if ($user->has_property($key)) {
+        $user->$key = $value;
+      }
+    }
 
-    return $user_object;
+    return $user;
   }
 }
+
+   // $user->user_id = $db_user["user_id"];
+    // $user->user_name = $db_user["user_name"];
+    // $user->user_password = $db_user["user_password"];
+    // $user->first_name = $db_user["first_name"];
+    // $user->last_name = $db_user["last_name"];
