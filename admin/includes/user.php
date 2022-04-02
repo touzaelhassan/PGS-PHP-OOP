@@ -13,6 +13,13 @@ class User
   {
     global $database;
     $query = $database->query($sql);
+    $users = mysqli_fetch_all($query, MYSQLI_ASSOC);
+    $array_of_users = [];
+
+    foreach ($users as $user) {
+      $array_of_users[] = self::instantiation($user);
+    }
+
     return $query;
   }
 
@@ -45,9 +52,3 @@ class User
     return array_key_exists($key, $user_properties);
   }
 }
-
-   // $user->user_id = $db_user["user_id"];
-    // $user->user_name = $db_user["user_name"];
-    // $user->user_password = $db_user["user_password"];
-    // $user->first_name = $db_user["first_name"];
-    // $user->last_name = $db_user["last_name"];
