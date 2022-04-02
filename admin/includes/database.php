@@ -15,6 +15,12 @@ class Database
   {
     $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
   }
+
+  public function query($sql)
+  {
+    $query = mysqli_query($this->connection, $sql);
+    return $query;
+  }
 }
 
 $database = new Database();
