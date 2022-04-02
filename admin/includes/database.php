@@ -21,6 +21,19 @@ class Database
     $query = mysqli_query($this->connection, $sql);
     return $query;
   }
+
+  private function confirm_query($query)
+  {
+    if (!$query) {
+      die("Query faild !");
+    }
+  }
+
+  public function escape_string($string)
+  {
+    $escaped_string = mysqli_escape_string($this->connection, $string);
+    return $escaped_string;
+  }
 }
 
 $database = new Database();
