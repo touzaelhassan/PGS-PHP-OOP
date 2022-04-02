@@ -38,6 +38,12 @@ class User
 
     return $user;
   }
+
+  private function has_property($key)
+  {
+    $user_properties = get_object_vars($this);
+    return array_key_exists($key, $user_properties);
+  }
 }
 
    // $user->user_id = $db_user["user_id"];
