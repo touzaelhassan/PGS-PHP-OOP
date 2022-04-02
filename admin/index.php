@@ -4,8 +4,9 @@
 
 <?php
 
-$user = new User();
-$query = $user->getUsers();
+// $user = new User();
+// $query = $user->getUsers();
+$query = User::getUsers();
 $users = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 echo "<pre>";
