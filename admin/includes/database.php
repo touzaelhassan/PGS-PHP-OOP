@@ -1,8 +1,15 @@
+<?php require_once "new_config.php"; ?>
+
 <?php
 
 class Database
 {
-  private $connection;
+  public $connection;
+
+  function __construct()
+  {
+    $this->open_database_connection();
+  }
 
   public function open_database_connection()
   {
@@ -11,4 +18,8 @@ class Database
 }
 
 $database = new Database();
-$database->open_database_connection();
+
+if ($database->connection) {
+  echo "database connected successfuly";
+}
+?>
