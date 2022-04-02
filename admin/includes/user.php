@@ -3,6 +3,12 @@
 class User
 {
 
+  public $user_id;
+  public $user_name;
+  public $user_password;
+  public $first_name;
+  public $last_name;
+
   public static function do_this_query($sql)
   {
     global $database;
