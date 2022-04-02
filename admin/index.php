@@ -1,10 +1,11 @@
 <?php include './includes/head.php'; ?>
 
+<?php include './includes/header.php'; ?>
 
 <?php
 
-$sql = "SELECT * FROM users ";
-$query = $database->query($sql);
+$user = new User();
+$query = $user->getUsers();
 $users = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 echo "<pre>";
@@ -12,8 +13,6 @@ print_r($users);
 echo "</pre>";
 
 ?>
-
-<?php include './includes/header.php'; ?>
 
 <?php include './includes/footer.php'; ?>
 

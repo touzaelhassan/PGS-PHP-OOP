@@ -3,7 +3,6 @@
 class User
 {
 
-
   public function getUsers()
   {
     global $database;
