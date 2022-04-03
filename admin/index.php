@@ -4,7 +4,9 @@
 
 <div class="dashboard">
   <?php include './includes/sidebar.php'; ?>
-  <div class="dashboard__content">DASHBOARD CONTENT</div>
+  <div class="dashboard__content">
+
+  </div>
 </div>
 
 <?php include './includes/footer.php'; ?>
