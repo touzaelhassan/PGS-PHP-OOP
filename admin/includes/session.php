@@ -4,11 +4,32 @@ class Session
 {
   public $user_id;
   private $signed_in = false;
+  public $message;
 
   function __construct()
   {
     session_start();
     $this->check_login();
+    $this->check_message();
+  }
+
+  public function message($msg = "")
+  {
+    if (!empty($msg)) {
+      $_SESSION["message"] = $msg;
+    } else {
+      return $this->message;
+    }
+  }
+
+  public function check_message()
+  {
+    if (isset($_SESSION["message"])) {
+      $this->message = $_SESSION["message"];
+      unset($_SESSION["message"]);
+    } else {
+      $this->message = "";
+    }
   }
 
   public function is_signed_in()
