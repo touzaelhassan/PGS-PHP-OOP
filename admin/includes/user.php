@@ -24,6 +24,24 @@ class User
     return $array_of_users;
   }
 
+  public static function user_verification($user_name, $user_password)
+  {
+    global $database;
+    $user_name = $database->escape_string($user_name);
+    $user_password = $database->escape_string($user_password);
+
+    $sql = "SELECT * FROM users user_name = '$user_name' AND user_password = '$user_password'";
+
+    $query = self::do_this_query($sql);
+
+    if (!empty($query)) {
+      $db_user = array_shift(($query));
+      return $db_user;
+    } else {
+      return false;
+    }
+  }
+
   public static function get_users()
   {
     return self::do_this_query("SELECT * FROM users");

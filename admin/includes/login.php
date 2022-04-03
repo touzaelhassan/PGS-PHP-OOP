@@ -15,7 +15,7 @@ if (isset($_POST["login"])) {
   $user_name = trim($_POST["user_name"]);
   $user_password = trim($_POST["user_password"]);
 
-  // Method to check database user
+  $db_user = User::user_verification($user_name, $user_password);
 
   if ($db_user) {
     $session->login($db_user);
