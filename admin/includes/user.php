@@ -14,13 +14,14 @@ class User
     global $database;
     $query = $database->query($sql);
     $users = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
     $array_of_users = [];
 
     foreach ($users as $user) {
       $array_of_users[] = self::instantiation($user);
     }
 
-    return $query;
+    return $array_of_users;
   }
 
   public static function get_users()

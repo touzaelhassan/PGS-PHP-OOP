@@ -4,18 +4,12 @@
 
 <?php
 
-$query = User::get_user_by_id(1);
-$db_user = mysqli_fetch_assoc($query);
+$users = User::get_users();
 
-echo "<pre>";
-print_r($db_user);
-echo "</pre>";
-
-$user = User::instantiation($db_user);
-
-echo "<pre>";
-print_r($user);
-echo "</pre>";
+foreach ($users as $user) {
+  echo $user->user_id;
+  echo "<br>";
+}
 
 ?>
 
