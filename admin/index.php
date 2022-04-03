@@ -4,12 +4,11 @@
 
 <?php
 
-$users = User::get_users();
+$user = User::get_user_by_id(1);
 
-foreach ($users as $user) {
-  echo $user->user_id;
-  echo "<br>";
-}
+echo "<pre>";
+print_r($user);
+echo "</pre>";
 
 ?>
 

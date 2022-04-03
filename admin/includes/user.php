@@ -31,7 +31,13 @@ class User
 
   public static function get_user_by_id($user_id)
   {
-    return self::do_this_query("SELECT * FROM users WHERE user_id = $user_id");
+    $query = self::do_this_query("SELECT * FROM users WHERE user_id = $user_id");
+    if (!empty($query)) {
+      $user = array_shift(($query));
+      return $user;
+    } else {
+      return false;
+    }
   }
 
   public static function instantiation($db_user)
