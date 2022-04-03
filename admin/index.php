@@ -6,6 +6,7 @@
 
 $user = User::get_user_by_id(1);
 
+
 echo "<pre>";
 print_r($user);
 echo "</pre>";
