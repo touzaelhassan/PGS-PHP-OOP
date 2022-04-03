@@ -37,13 +37,16 @@ if (isset($_POST["login"])) {
     <div class="form__title">
       <h2 class="mb-4 text-center">LOGIN</h2>
     </div>
+    <?php if (isset($error_mesage)) {
+      echo "<p class='text-center alert alert-danger'>$error_mesage</p>";
+    } ?>
     <div class="form-group">
       <label for="user_name">Username</label>
-      <input type="text" class="form-control" name="user_name">
+      <input type="text" class="form-control" value="<?php echo htmlentities($user_name) ?>" name="user_name">
     </div>
     <div class="form-group">
       <label for="user_password">Password</label>
-      <input type="password" class="form-control" name="user_password">
+      <input type="password" class="form-control" value="<?php echo htmlentities($user_password) ?>" name="user_password">
     </div>
     <div class="form-group">
       <input type="submit" class="form-control text-white bg-dark" name="login">
