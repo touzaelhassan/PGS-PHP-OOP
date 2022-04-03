@@ -30,7 +30,7 @@ class User
     $user_name = $database->escape_string($user_name);
     $user_password = $database->escape_string($user_password);
 
-    $sql = "SELECT * FROM users user_name = '$user_name' AND user_password = '$user_password'";
+    $sql = "SELECT * FROM users WHERE user_name = '$user_name' AND user_password = '$user_password' ";
 
     $query = self::do_this_query($sql);
 
