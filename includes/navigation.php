@@ -1,5 +1,5 @@
 <nav class="navigation">
   <div class="navigation__content">
-    Navigation
+    NAVIGATION
   </div>
 </nav>

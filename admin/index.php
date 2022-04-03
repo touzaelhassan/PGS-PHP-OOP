@@ -2,16 +2,10 @@
 
 <?php include './includes/header.php'; ?>
 
-<?php
-
-$user = User::get_user_by_id(1);
-
-
-echo "<pre>";
-print_r($user);
-echo "</pre>";
-
-?>
+<div class="dashboard">
+  <?php include './includes/sidebar.php'; ?>
+  <div class="dashboard__content">DASHBOARD CONTENT</div>
+</div>
 
 <?php include './includes/footer.php'; ?>
 
