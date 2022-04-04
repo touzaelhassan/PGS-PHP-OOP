@@ -16,13 +16,8 @@ if (!$session->is_signed_in()) {
   <div class="dashboard__content">
     <?php
 
-    $user = User::get_user_by_id(2);
-    $user->user_name = "omab";
-    $user->update();
-
-    echo "<pre>";
-    print_r($user);
-    echo "</pre>";
+    $user = User::get_user_by_id(9);
+    $user->delete();
     ?>
   </div>
 </div>
