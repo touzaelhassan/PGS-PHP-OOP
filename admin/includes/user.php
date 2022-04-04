@@ -3,6 +3,7 @@
 class User extends DB_Object
 {
 
+  protected static $db_table = "users";
   public $user_id;
   public $user_name;
   public $user_password;
