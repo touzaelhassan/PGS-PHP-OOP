@@ -81,7 +81,12 @@ class User
   {
     global $database;
 
-    $sql = "INSERT INTO users(user_name, user_password, first_name, last_name) VALUES ('$database->escape_string($this->user_name)', '$database->escape_string($this->user_password)', '$database->escape_string($this->first_name)', '$database->escape_string($this->last_name)'";
+    $this->user_name = $database->escape_string($this->user_name);
+    $this->user_password = $database->escape_string($this->user_password);
+    $this->first_name = $database->escape_string($this->first_name);
+    $this->last_name = $database->escape_string($this->last_name);
+
+    $sql = "INSERT INTO users (user_name, user_password, first_name, last_name) VALUES ('$this->user_name', '$this->user_password' ,'$this->first_name', '$this->last_name')";
 
     if ($database->query($sql)) {
       $this->user_id = $database->insert_id();
@@ -90,5 +95,21 @@ class User
 
       return false;
     }
+  }
+
+  public function update()
+  {
+    global $database;
+
+    $this->user_id = $database->escape_string($this->user_id);
+    $this->user_name = $database->escape_string($this->user_name);
+    $this->user_password = $database->escape_string($this->user_password);
+    $this->first_name = $database->escape_string($this->first_name);
+    $this->last_name = $database->escape_string($this->last_name);
+
+    $sql = "UPDATE users SET user_name = '$this->user_name', user_password = '$this->user_password', first_name='$this->first_name', last_name='$this->last_name' WHERE user_id= $this->user_id";
+
+    $database->query($sql);
+    return (mysqli_affected_rows($database->connection) == 1) ? true : false;
   }
 }
