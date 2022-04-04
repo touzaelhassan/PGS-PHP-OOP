@@ -1,6 +1,6 @@
 <?php
 
-class User
+class User extends DB_Object
 {
 
   public $user_id;

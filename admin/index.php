@@ -14,11 +14,7 @@ if (!$session->is_signed_in()) {
 <div class="dashboard">
   <?php include './includes/sidebar.php'; ?>
   <div class="dashboard__content">
-    <?php
 
-    $user = User::get_user_by_id(9);
-    $user->delete();
-    ?>
   </div>
 </div>
 
