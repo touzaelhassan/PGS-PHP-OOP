@@ -76,4 +76,19 @@ class User
     $user_properties = get_object_vars($this);
     return array_key_exists($key, $user_properties);
   }
+
+  public function create()
+  {
+    global $database;
+
+    $sql = "INSERT INTO users(user_name, user_password, first_name, last_name) VALUES ('$database->escape_string($this->user_name)', '$database->escape_string($this->user_password)', '$database->escape_string($this->first_name)', '$database->escape_string($this->last_name)'";
+
+    if ($database->query($sql)) {
+      $this->user_id = $database->insert_id();
+      return true;
+    } else {
+
+      return false;
+    }
+  }
 }
