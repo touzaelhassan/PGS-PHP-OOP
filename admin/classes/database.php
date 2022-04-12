@@ -1,5 +1,3 @@
-<?php include 'new_config.php'; ?>  
-
 <?php
 
 class Database
@@ -34,13 +32,3 @@ class Database
 
 <?php $database = new Database(); ?>
 
-<?php
-
-$query = $database->query("SELECT * FROM users");
-$users =  $query->fetch_assoc();
-
-echo "<pre>";
-print_r($users);
-echo "</pre>";
-
-?>

@@ -27,9 +27,6 @@ class User extends DB_Object
 
   public static function user_verification($user_name, $user_password)
   {
-    global $database;
-    $user_name = $database->escape_string($user_name);
-    $user_password = $database->escape_string($user_password);
 
     $sql = "SELECT * FROM users WHERE user_name = '$user_name' AND user_password = '$user_password' ";
 
@@ -82,11 +79,6 @@ class User extends DB_Object
   {
     global $database;
 
-    $this->user_name = $database->escape_string($this->user_name);
-    $this->user_password = $database->escape_string($this->user_password);
-    $this->first_name = $database->escape_string($this->first_name);
-    $this->last_name = $database->escape_string($this->last_name);
-
     $sql = "INSERT INTO users (user_name, user_password, first_name, last_name) VALUES ('$this->user_name', '$this->user_password' ,'$this->first_name', '$this->last_name')";
 
     if ($database->query($sql)) {
@@ -101,13 +93,6 @@ class User extends DB_Object
   public function update()
   {
     global $database;
-
-    $this->user_id = $database->escape_string($this->user_id);
-    $this->user_name = $database->escape_string($this->user_name);
-    $this->user_password = $database->escape_string($this->user_password);
-    $this->first_name = $database->escape_string($this->first_name);
-    $this->last_name = $database->escape_string($this->last_name);
-
     $sql = "UPDATE users SET user_name = '$this->user_name', user_password = '$this->user_password', first_name='$this->first_name', last_name='$this->last_name' WHERE user_id= $this->user_id";
 
     $database->query($sql);
@@ -117,7 +102,6 @@ class User extends DB_Object
   public function delete()
   {
     global $database;
-    $this->user_id = $database->escape_string($this->user_id);
     $sql = "DELETE FROM users WHERE user_id = $this->user_id";
     $database->query($sql);
     return (mysqli_affected_rows($database->connection) == 1) ? true : false;
