@@ -2,7 +2,9 @@
 
 <?php include "./includes/header.php"; ?>
 
-<div class="page"></div>
+<div class="page">
+  <h1>HOMEPAGE</h1>
+</div>
 
 <?php include "./includes/footer.php"; ?>
 

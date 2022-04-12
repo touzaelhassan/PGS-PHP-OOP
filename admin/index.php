@@ -14,7 +14,7 @@ if (!$session->is_signed_in()) {
 <div class="dashboard">
   <?php include './includes/sidebar.php'; ?>
   <div class="dashboard__content">
-
+    <h1>ADMIN DASHBOARD</h1>
   </div>
 </div>
 

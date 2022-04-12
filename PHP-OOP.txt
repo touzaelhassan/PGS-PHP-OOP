@@ -3,11 +3,13 @@
 1 - Class = Blueprint or template for creating objects
     
     class Person { 
+
       Properties
       Methods
+
     }
 
-2 - Properties
+2 - Properties = Variables that are declared inside a class
    
     class User {
 
@@ -33,7 +35,8 @@
     protected : Available only in parent class and child class
     public    : Available throughout the whole program
 
-5 - Static Modifier
+5 - Static Modifier = Static properties and methods can be used without creating an instance of the class
+    Static keyword used to declare variables in a function which keep their values after the function has been ended
 
     class User {
 
@@ -45,7 +48,7 @@
 
     }
 
-    echo User::$user_name;
+    User::$user_name;
     User::sayHelloWorld();
 
 
@@ -74,14 +77,12 @@
 
     }
 
-8 - Instantiating = Creating different instances ( objects ) of a class
-
-    $user_one = new User();
-
-9 - Inheritance = Inheriting Properties and Methods from another class
+8 - Inheritance = Inheriting Properties and Methods from another class
 
      class Admin extends User {
 
      }
-
     
+9 - Instantiating = Creating different instances ( objects ) of a class
+
+    $user_one = new User();

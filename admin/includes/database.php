@@ -1,4 +1,4 @@
-<?php require_once "new_config.php"; ?>
+<?php include 'new_config.php'; ?>  
 
 <?php
 
@@ -11,36 +11,36 @@ class Database
     $this->open_database_connection();
   }
 
+  // Database Connection Method
   public function open_database_connection()
   {
     $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
   }
 
+  // Database Query Method
   public function query($sql)
   {
-    $query = $this->connection->query($sql);
-    return $query;
+    return $this->connection->query($sql);
   }
 
-  private function confirm_query($query)
-  {
-    if (!$query) {
-      die("Query faild !" . $this->connection->error);
-    }
-  }
-
-  public function escape_string($string)
-  {
-    $escaped_string = $this->connection->real_escape_string($string);
-    return $escaped_string;
-  }
-
+  // Get The Id of The last inserted row on The database
   public function insert_id()
   {
     return $this->connection->insert_id;
   }
 }
 
-$database = new Database();
+?>
+
+<?php $database = new Database(); ?>
+
+<?php
+
+$query = $database->query("SELECT * FROM users");
+$users =  $query->fetch_assoc();
+
+echo "<pre>";
+print_r($users);
+echo "</pre>";
 
 ?>
