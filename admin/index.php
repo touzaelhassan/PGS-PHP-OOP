@@ -10,9 +10,11 @@
       <?php
 
       $db_user = User::get_user_by_id(1);
+      $user_object = User::instantiation($db_user);
       echo "<pre>";
-      print_r($db_user);
+      print_r($user_object);
       echo "</pre>";
+      echo $user_object->user_name;
 
       ?>
     </div>
