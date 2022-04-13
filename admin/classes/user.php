@@ -28,7 +28,8 @@ class User
     global $database;
     $sql = "SELECT * FROM users WHERE user_id = $user_id";
     $query = $database->query($sql);
-    return mysqli_fetch_assoc($query);
+    $user = mysqli_fetch_assoc($query);
+    return self::instantiation($user);
   }
 
   public static function instantiation($db_user)

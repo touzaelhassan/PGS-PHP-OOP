@@ -8,9 +8,9 @@
     <h4 class="dashboard__title">DASHBOARD</h4>
     <div class="dashboard__content">
       <?php
-      $users = User::get_users();
+      $user = User::get_user_by_id(1);
       echo "<pre>";
-      print_r($users);
+      print_r($user);
       echo "</pre>";
       ?>
     </div>
