@@ -4,8 +4,19 @@
 
 <div class="dashboard">
   <?php include './includes/sidebar.php'; ?>
-  <div class="dashboard__content">
-    <h1 class="dashboard__title">DASHBOARD</h1>
+  <div class="dashboard__container">
+    <h4 class="dashboard__title">DASHBOARD</h4>
+    <div class="dashboard__content">
+      <?php
+
+      $user = new User();
+      $db_user = $user->get_users();
+      echo "<pre>";
+      print_r($db_user);
+      echo "</pre>";
+
+      ?>
+    </div>
   </div>
 </div>
 

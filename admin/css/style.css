@@ -75,17 +75,25 @@ a {
 
 /* Start Dashboard Content Section */
 
-.dashboard__content {
+.dashboard__container {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 20px;
   border: 3px solid green;
   padding: 20px;
 }
 
-.dashboard__content h1 {
-  margin-bottom: 150px;
+.dashboard__title {
+  margin-bottom: 0;
+  border: 3px solid coral;
+  padding: 20px;
+}
+
+.dashboard__content {
+  flex: 1;
+  border: 3px solid coral;
+  padding: 20px;
 }
 
 /* End Dashboard Content Section */
