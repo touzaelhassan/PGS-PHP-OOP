@@ -8,14 +8,10 @@
     <h4 class="dashboard__title">DASHBOARD</h4>
     <div class="dashboard__content">
       <?php
-
-      $db_user = User::get_user_by_id(1);
-      $user_object = User::instantiation($db_user);
+      $users = User::get_users();
       echo "<pre>";
-      print_r($user_object);
+      print_r($users);
       echo "</pre>";
-      echo $user_object->user_name;
-
       ?>
     </div>
   </div>

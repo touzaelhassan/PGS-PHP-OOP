@@ -12,7 +12,15 @@ class User
     global $database;
     $sql = "SELECT * FROM users";
     $query = $database->query($sql);
-    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+    $users =  mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+    $array_of_user_objects = [];
+
+    foreach ($users as $user) {
+      $array_of_user_objects[] = self::instantiation($user);
+    }
+
+    return $array_of_user_objects;
   }
 
   public static function get_user_by_id($user_id)
@@ -26,10 +34,12 @@ class User
   public static function instantiation($db_user)
   {
     $user_object = new self;
+
     $user_object->user_id = $db_user['user_id'];
     $user_object->user_name = $db_user['user_name'];
     $user_object->first_name = $db_user['first_name'];
     $user_object->last_name = $db_user['last_name'];
+
     return $user_object;
   }
 }
