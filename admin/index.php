@@ -9,8 +9,7 @@
     <div class="dashboard__content">
       <?php
 
-      $user = new User();
-      $db_user = $user->get_users();
+      $db_user = User::get_user_by_id(1);
       echo "<pre>";
       print_r($db_user);
       echo "</pre>";
