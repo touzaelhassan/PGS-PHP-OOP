@@ -12,7 +12,7 @@ class Database
   // Database Connection Method
   public function open_database_connection()
   {
-    $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    $this->connection = new mysqli('localhost', 'root', '', 'photo_gallery');
   }
 
   // Database Query Method
