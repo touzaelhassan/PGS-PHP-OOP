@@ -1,6 +1,6 @@
 <?php include './includes/head.php'; ?>
 
-<?php if (!$session->is_user_signed_in()) header("location: login.php"); ?>
+<?php if (!isset($_SESSION["user_id"])) header("location: login.php"); ?>
 
 <?php include './includes/header.php'; ?>
 

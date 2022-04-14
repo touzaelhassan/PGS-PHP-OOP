@@ -3,30 +3,22 @@
 class Session
 {
   public $user_id;
-  private $signed_in = false;
 
   function __construct()
   {
     session_start();
   }
 
-  public function login($user)
+  public function login($db_user)
   {
-    $_SESSION["user_id"] = $user->user_id;
-    $this->user_id = $user->user_id;
-    $this->signed_in = true;
+    $_SESSION["user_id"] = $db_user->user_id;
+    $this->user_id = $db_user->user_id;
   }
 
   public function logout()
   {
     unset($_SESSION["user_id"]);
     unset($this->user_id);
-    $this->signed_in = false;
-  }
-
-  public function is_user_signed_in()
-  {
-    return $this->signed_in;
   }
 }
 

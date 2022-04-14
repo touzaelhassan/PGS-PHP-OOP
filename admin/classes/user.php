@@ -40,16 +40,19 @@ class User
     $user_object->user_name = $db_user['user_name'];
     $user_object->first_name = $db_user['first_name'];
     $user_object->last_name = $db_user['last_name'];
-
     return $user_object;
   }
 
   public static function verify_user($user_name, $user_password)
   {
     global $database;
-    $sql = "SELECT * FROM users WHERE user_name = $user_name AND user_password = $user_password";
+    $sql = "SELECT * FROM users WHERE user_name = '$user_name' AND user_password = '$user_password'";
     $query = $database->query($sql);
     $user = mysqli_fetch_assoc($query);
-    return self::instantiation($user);
+    if ($user) {
+      return self::instantiation($user);
+    } else {
+      return false;
+    }
   }
 }
