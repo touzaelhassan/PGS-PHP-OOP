@@ -1,5 +1,7 @@
 <?php include './includes/head.php'; ?>
 
+<?php if (!$session->is_user_signed_in()) header("location: login.php"); ?>
+
 <?php include './includes/header.php'; ?>
 
 <div class="dashboard">

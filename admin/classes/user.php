@@ -43,4 +43,13 @@ class User
 
     return $user_object;
   }
+
+  public static function verify_user($user_name, $user_password)
+  {
+    global $database;
+    $sql = "SELECT * FROM users WHERE user_name = $user_name AND user_password = $user_password";
+    $query = $database->query($sql);
+    $user = mysqli_fetch_assoc($query);
+    return self::instantiation($user);
+  }
 }
