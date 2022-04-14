@@ -1,5 +1,6 @@
 <?php include './classes/database.php'; ?>
 <?php include './classes/user.php'; ?>
+<?php include './classes/session.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
