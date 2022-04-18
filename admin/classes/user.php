@@ -60,6 +60,19 @@ class User
     }
   }
 
+  public function delete_user()
+  {
+    global $database;
+    $sql = "DELETE FROM users WHERE user_id = $this->user_id";
+    $database->query($sql);
+
+    if (mysqli_affected_rows($database->connection) == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public static function instantiation($db_user)
   {
     $user_object = new self;

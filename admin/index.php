@@ -11,14 +11,8 @@
     <div class="dashboard__content">
       <?php
 
-      $user = new User();
-
-      $user->user_name = "omar";
-      $user->user_password = "123456";
-      $user->first_name = "Omar";
-      $user->last_name = "Medoni";
-
-      $user->update_user(3);
+      $user = User::get_user_by_id(4);
+      $user->delete_user();
 
       ?>
     </div>
