@@ -9,7 +9,18 @@
   <div class="dashboard__container">
     <h4 class="dashboard__title">DASHBOARD</h4>
     <div class="dashboard__content">
+      <?php
 
+      $user = new User();
+
+      $user->user_name = "omar";
+      $user->user_password = "123456";
+      $user->first_name = "Omar";
+      $user->last_name = "Medan";
+
+      $user->create_user();
+
+      ?>
     </div>
   </div>
 </div>

@@ -7,6 +7,19 @@ class User
   public $first_name;
   public $last_name;
 
+  public function create_user()
+  {
+    global $database;
+    $sql = "INSERT INTO users (user_name, user_password, first_name, last_name) VALUES ('$this->user_name', '$this->user_password', '$this->first_name', '$this->last_name')";
+    $query = $database->query($sql);
+    if ($query) {
+      $this->user_id = $database->insert_id();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public static function get_users()
   {
     global $database;
