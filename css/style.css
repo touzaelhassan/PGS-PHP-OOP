@@ -31,6 +31,12 @@ a:hover {
   padding: 25px;
 }
 
+.logo {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
 .navigation {
   flex: 1;
 }

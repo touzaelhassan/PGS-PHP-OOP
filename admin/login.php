@@ -20,12 +20,10 @@ if (isset($_POST["login"])) {
 
 ?>
 
-
 <?php include "./includes/header.php" ?>
 
 <section class="login">
   <form action="login.php" method="POST" class="login__form">
-
     <div class="form__title">
       <h2 class="mb-4 text-center">LOGIN</h2>
     </div>
