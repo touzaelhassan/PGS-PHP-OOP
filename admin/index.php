@@ -16,9 +16,9 @@
       $user->user_name = "omar";
       $user->user_password = "123456";
       $user->first_name = "Omar";
-      $user->last_name = "Medan";
+      $user->last_name = "Medoni";
 
-      $user->create_user();
+      $user->update_user(3);
 
       ?>
     </div>
