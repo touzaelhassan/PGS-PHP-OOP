@@ -101,6 +101,13 @@ a {
 
 /* End Dashboard Content Section */
 
+/* Start Upload Photo Section */
+.form__upload {
+  border: 3px solid coral;
+  padding: 20px;
+}
+/* End Upload Photo Section */
+
 /* Start Footer Section */
 .footer {
   border: 3px solid #000;
