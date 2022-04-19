@@ -9,12 +9,7 @@
   <div class="dashboard__container">
     <h4 class="dashboard__title">DASHBOARD</h4>
     <div class="dashboard__content">
-      <?php
 
-      $user = User::get_user_by_id(4);
-      $user->delete_user();
-
-      ?>
     </div>
   </div>
 </div>

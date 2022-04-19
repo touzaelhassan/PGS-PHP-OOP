@@ -47,10 +47,10 @@ class User
     return self::instantiation($user);
   }
 
-  public function update_user($user_id)
+  public function update_user()
   {
     global $database;
-    $sql = "UPDATE users SET user_name = '$this->user_name', user_password = '$this->user_password', first_name = '$this->first_name', last_name = '$this->last_name' WHERE user_id = $user_id ";
+    $sql = "UPDATE users SET user_name = '$this->user_name', user_password = '$this->user_password', first_name = '$this->first_name', last_name = '$this->last_name' WHERE user_id = $this->user_id ";
     $database->query($sql);
 
     if (mysqli_affected_rows($database->connection) == 1) {
