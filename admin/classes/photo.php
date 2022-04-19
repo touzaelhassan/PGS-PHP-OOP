@@ -118,7 +118,7 @@ class Photo
       $this->photo_file_name = $file["name"];
       $this->photo_type = $file["type"];
       $this->photo_size = $file["size"];
-      $this->photo_temp_path = $file["temp_name"];
+      $this->photo_temp_path = $file["tmp_name"];
     }
   }
 
