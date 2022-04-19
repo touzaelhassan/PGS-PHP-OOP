@@ -9,7 +9,7 @@ class Photo
   public $photo_type;
   public $photo_size;
 
-  public $temporary_path;
+  public $photo_temp_path;
   public $upload_directory = "images";
   public $custom_errors = [];
   public $upload_errors = [
@@ -104,5 +104,22 @@ class Photo
     $photo_object->photo_size = $db_photo['photo_size'];
 
     return $photo_object;
+  }
+
+  public function set_file($file)
+  {
+
+    if (empty($file) || !$file || !is_array($file)) {
+      $this->custom_errors[] = "There was no file uploaded here";
+      return false;
+    } elseif ($file["error"] != 0) {
+      $this->custom_errors[] = $this->upload_errors[$file["error"]];
+      return false;
+    } else {
+      $this->photo_file_name = $file["name"];
+      $this->photo_type = $file["type"];
+      $this->photo_size = $file["size"];
+      $this->photo_temp_path = $file["temp_name"];
+    }
   }
 }
