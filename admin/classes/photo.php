@@ -106,9 +106,8 @@ class Photo
     return $photo_object;
   }
 
-  public function set_file($file)
+  public function set_photo($file)
   {
-
     if (empty($file) || !$file || !is_array($file)) {
       $this->custom_errors[] = "There was no file uploaded here";
       return false;
@@ -120,6 +119,43 @@ class Photo
       $this->photo_type = $file["type"];
       $this->photo_size = $file["size"];
       $this->photo_temp_path = $file["temp_name"];
+    }
+  }
+
+  public function save_photo()
+  {
+    if ($this->photo_id) {
+      $this->update_photo();
+    } else {
+
+      if (!empty($this->custom_errors)) {
+        return false;
+      }
+
+      if (
+        empty($this->photo_file_name) ||
+        empty($this->photo_temp_path)
+      ) {
+        $this->custom_errors[] = "The file was not available";
+        return false;
+      }
+
+      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/$this->upload_directory/$this->photo_file_name";
+
+      if (file_exists($target_path)) {
+        $this->custom_errors[] = "The file $this->photo_file_name already exists";
+        return false;
+      }
+
+      if (move_uploaded_file($this->photo_temp_path, $target_path)) {
+        if ($this->create_photo()) {
+          unset($this->photo_temp_path);
+          return true;
+        }
+      } else {
+        $this->custom_errors[] = "The file directory probably does not have permissions";
+        return false;
+      }
     }
   }
 }
