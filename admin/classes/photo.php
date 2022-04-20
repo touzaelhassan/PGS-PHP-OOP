@@ -154,7 +154,8 @@ class Photo
     $database->query($sql);
 
     if (mysqli_affected_rows($database->connection) == 1) {
-      return true;
+      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . self::$upload_directory . "/" . $this->photo_file_name;
+      return unlink($target_path) ? true : false;
     } else {
       return false;
     }
