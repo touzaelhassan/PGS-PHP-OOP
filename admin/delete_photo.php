@@ -6,7 +6,13 @@
 
 <?php
 
-$session->logout();
-header("location: ./login.php");
+$photo_id = $_GET["photo_id"];
+
+$photo = Photo::get_photo_by_id($photo_id);
+
+if ($photo) {
+  $photo->delete_photo();
+  header("location: photos.php");
+}
 
 ?>

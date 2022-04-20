@@ -66,32 +66,6 @@ class Photo
     return self::instantiation($user);
   }
 
-  public function update_photo()
-  {
-    global $database;
-    $sql = "UPDATE photos SET photo_title = '$this->photo_title', photo_description = '$this->photo_description', photo_file_name = '$this->photo_file_name', photo_type = '$this->photo_type', photo_size = '$this->photo_size' WHERE photo_id = $this->photo_id ";
-    $database->query($sql);
-
-    if (mysqli_affected_rows($database->connection) == 1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  public function delete_photo()
-  {
-    global $database;
-    $sql = "DELETE FROM photos WHERE photo_id = $this->photo_id";
-    $database->query($sql);
-
-    if (mysqli_affected_rows($database->connection) == 1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   public static function instantiation($db_photo)
   {
     $photo_object = new self;
@@ -104,6 +78,19 @@ class Photo
     $photo_object->photo_size = $db_photo['photo_size'];
 
     return $photo_object;
+  }
+
+  public function update_photo()
+  {
+    global $database;
+    $sql = "UPDATE photos SET photo_title = '$this->photo_title', photo_description = '$this->photo_description', photo_file_name = '$this->photo_file_name', photo_type = '$this->photo_type', photo_size = '$this->photo_size' WHERE photo_id = $this->photo_id ";
+    $database->query($sql);
+
+    if (mysqli_affected_rows($database->connection) == 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public function set_photo($file)
@@ -156,6 +143,20 @@ class Photo
         $this->custom_errors[] = "The file directory probably does not have permissions";
         return false;
       }
+    }
+  }
+
+
+  public function delete_photo()
+  {
+    global $database;
+    $sql = "DELETE FROM photos WHERE photo_id = $this->photo_id";
+    $database->query($sql);
+
+    if (mysqli_affected_rows($database->connection) == 1) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
