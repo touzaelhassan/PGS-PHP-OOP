@@ -10,7 +10,7 @@ class Photo
   public $photo_size;
 
   public $photo_temp_path;
-  public $upload_directory = "images";
+  static $upload_directory = "images";
   public $custom_errors = [];
   public $upload_errors = [
     UPLOAD_ERR_OK => "There is no error, the file uploaded with success",
@@ -140,7 +140,7 @@ class Photo
         return false;
       }
 
-      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/$this->upload_directory/$this->photo_file_name";
+      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . self::$upload_directory . "/" . $this->photo_file_name;
 
       if (file_exists($target_path)) {
         $this->custom_errors[] = "The file $this->photo_file_name already exists";

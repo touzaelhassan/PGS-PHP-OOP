@@ -108,6 +108,12 @@ a {
 }
 /* End Upload Photo Section */
 
+/* Start Photos Section */
+.table__photo {
+  width: 90px;
+}
+/* End Photos Section */
+
 /* Start Footer Section */
 .footer {
   border: 3px solid #000;
