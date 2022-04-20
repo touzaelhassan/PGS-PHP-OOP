@@ -2,12 +2,7 @@
 
 <?php if (!isset($_SESSION["user_id"])) header("location: login.php"); ?>
 
-<?php
-
-$photos = Photo::get_photos();
-
-
-?>
+<?php $photos = Photo::get_photos(); ?>
 
 <?php include './includes/header.php'; ?>
 
