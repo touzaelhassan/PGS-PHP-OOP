@@ -17,18 +17,15 @@ if (empty($_GET["photo_id"])) {
       $photo->photo_caption = $_POST['photo_caption'];
       $photo->photo_alternate_text = $_POST['photo_alternate_text'];
       $photo->photo_description = $_POST['photo_description'];
+
+      $photo->save_photo();
+      header("location: photos.php");
     }
   }
 }
 
 ?>
 
-<?php
-
-if (isset($_POST["update-photo"])) {
-}
-
-?>
 
 <?php include './includes/header.php'; ?>
 

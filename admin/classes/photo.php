@@ -4,6 +4,8 @@ class Photo
 {
   public $photo_id;
   public $photo_title;
+  public $photo_caption;
+  public $photo_alternate_text;
   public $photo_description;
   public $photo_file_name;
   public $photo_type;
@@ -72,6 +74,8 @@ class Photo
 
     $photo_object->photo_id = $db_photo['photo_id'];
     $photo_object->photo_title = $db_photo['photo_title'];
+    $photo_object->photo_caption = $db_photo['photo_caption'];
+    $photo_object->photo_alternate_text = $db_photo['photo_alternate_text'];
     $photo_object->photo_description = $db_photo['photo_description'];
     $photo_object->photo_file_name = $db_photo['photo_file_name'];
     $photo_object->photo_type = $db_photo['photo_type'];
@@ -83,7 +87,7 @@ class Photo
   public function update_photo()
   {
     global $database;
-    $sql = "UPDATE photos SET photo_title = '$this->photo_title', photo_description = '$this->photo_description', photo_file_name = '$this->photo_file_name', photo_type = '$this->photo_type', photo_size = '$this->photo_size' WHERE photo_id = $this->photo_id ";
+    $sql = "UPDATE photos SET photo_title = '$this->photo_title', photo_caption = '$this->photo_caption', photo_alternate_text = '$this->photo_alternate_text', photo_description = '$this->photo_description', photo_file_name = '$this->photo_file_name', photo_type = '$this->photo_type', photo_size = '$this->photo_size' WHERE photo_id = $this->photo_id ";
     $database->query($sql);
 
     if (mysqli_affected_rows($database->connection) == 1) {
