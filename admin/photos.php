@@ -30,8 +30,8 @@
                 <img src="<?php echo Photo::$upload_directory . "/" . $photo->photo_file_name; ?>" class="table__photo">
                 <div class="photo__links">
                   <a href="#">VIEW</a>
-                  <a href="#">UPDATE</a>
-                  <a href="./delete_photo.php?photo_id=<?php echo $photo->photo_id; ?>">DELETE</a>
+                  <a href="edit_photo.php?photo_id=<?php echo $photo->photo_id; ?>">UPDATE</a>
+                  <a href="delete_photo.php?photo_id=<?php echo $photo->photo_id; ?>">DELETE</a>
                 </div>
               </td>
               <td><?php echo $photo->photo_file_name; ?></td>

@@ -2,15 +2,30 @@
 
 <?php if (!isset($_SESSION["user_id"])) header("location: login.php"); ?>
 
-<?php //$photos = Photo::get_photos(); 
+<?php
+
+if (empty($_GET["photo_id"])) {
+  header("location: photos.php");
+} else {
+  $photo_id = $_GET['photo_id'];
+  $photo = Photo::get_photo_by_id($photo_id);
+
+
+  if (isset($_POST["update-photo"])) {
+    if ($photo) {
+      $photo->photo_title = $_POST['photo_title'];
+      $photo->photo_caption = $_POST['photo_caption'];
+      $photo->photo_alternate_text = $_POST['photo_alternate_text'];
+      $photo->photo_description = $_POST['photo_description'];
+    }
+  }
+}
+
 ?>
 
 <?php
 
 if (isset($_POST["update-photo"])) {
-  echo "<pre>";
-  print_r($_POST);
-  echo "</pre>";
 }
 
 ?>
@@ -25,19 +40,19 @@ if (isset($_POST["update-photo"])) {
       <form action="" method="POST" class="edit__form">
         <div class="form__inputs">
           <div class="form-group">
-            <input type="text" name="photo_title" class="form-control">
+            <input type="text" name="photo_title" value="<?php echo $photo->photo_title; ?>" class="form-control">
           </div>
           <div class="form-group">
             <label>Caption</label>
-            <input type="text" name="photo_caption" class="form-control">
+            <input type="text" name="photo_caption" value="<?php echo $photo->photo_caption; ?>" class="form-control">
           </div>
           <div class="form-group">
             <label>Alternate Text</label>
-            <input type="text" name="photo_alternate_text" class="form-control">
+            <input type="text" name="photo_alternate_text" value="<?php echo $photo->photo_alternate_text; ?>" class="form-control">
           </div>
           <div class="form-group">
             <label>Description</label>
-            <textarea name="photo_description" class="form-control" cols="30" rows="10"></textarea>
+            <textarea name="photo_description" class="form-control" cols="30" rows="10"><?php echo $photo->photo_description; ?></textarea>
           </div>
         </div>
         <div class="photo__info">
