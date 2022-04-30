@@ -4,13 +4,18 @@ class User
 {
   public $user_id;
   public $user_name;
+  public $user_password;
+  public $user_image;
   public $first_name;
   public $last_name;
+
+  public $upload_directory = "images";
+  public $image_placeholder = "https://i.pravatar.cc/100";
 
   public function create_user()
   {
     global $database;
-    $sql = "INSERT INTO users (user_name, user_password, first_name, last_name) VALUES ('$this->user_name', '$this->user_password', '$this->first_name', '$this->last_name')";
+    $sql = "INSERT INTO users (user_name, user_password, user_image, first_name, last_name) VALUES ('$this->user_name', '$this->user_password', '$this->user_image', $this->first_name', '$this->last_name')";
     $query = $database->query($sql);
 
     if ($query) {
@@ -18,6 +23,15 @@ class User
       return true;
     } else {
       return false;
+    }
+  }
+
+  public function user_image_path()
+  {
+    if ($this->user_image) {
+      return $this->upload_directory . "/" . $this->user_image;
+    } else {
+      return $this->image_placeholder;
     }
   }
 
@@ -79,6 +93,7 @@ class User
 
     $user_object->user_id = $db_user['user_id'];
     $user_object->user_name = $db_user['user_name'];
+    $user_object->user_image = $db_user['user_image'];
     $user_object->first_name = $db_user['first_name'];
     $user_object->last_name = $db_user['last_name'];
 

@@ -46,17 +46,7 @@ a {
 }
 /* End Dashboard Section */
 
-/* Start Sidebar Section */
-.sidebar {
-  border: 3px solid blue;
-  padding: 20px;
-
-  width: 200px;
-}
-/* End Sidebar Section */
-
 /* Start Dashboard Content Section */
-
 .dashboard__container {
   flex: 1;
   display: flex;
@@ -77,8 +67,14 @@ a {
   border: 3px solid green;
   padding: 20px;
 }
-
 /* End Dashboard Content Section */
+
+/* Start User Section */
+.user__image {
+  width: 62px;
+  height: 62px;
+}
+/* End User Section */
 
 /* Start Photos Section */
 .table__photo {
@@ -124,6 +120,30 @@ a {
   justify-content: space-between;
 }
 /* End Edit Photo Section */
+
+/* Start Sidebar Section */
+.sidebar {
+  border: 3px solid blue;
+  padding: 20px;
+  width: 200px;
+}
+
+.sidebar__list {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar__item {
+  margin-bottom: 10px;
+}
+
+.sidebar__link {
+  display: block;
+  border: 1px solid #eee;
+  padding: 5px;
+  font-size: 14px;
+}
+/* End Sidebar Section */
 
 /* Start Login Section */
 .login {
