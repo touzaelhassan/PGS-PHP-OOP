@@ -9,7 +9,7 @@
 <div class="dashboard">
   <?php include './includes/sidebar.php'; ?>
   <div class="dashboard__container">
-    <h4 class="dashboard__title">USERS</h4>
+    <h4 class="dashboard__title users"><span>USERS</span> <a href="add_user.php" class="btn btn-success btn-sm">ADD USER</a></h4>
     <div class="dashboard__content">
       <table class="table table-bordered table__photos">
         <thead>

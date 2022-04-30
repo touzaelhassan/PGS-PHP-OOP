@@ -70,6 +70,12 @@ a {
 /* End Dashboard Content Section */
 
 /* Start User Section */
+.dashboard__title.users {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .user__image {
   width: 62px;
   height: 62px;
