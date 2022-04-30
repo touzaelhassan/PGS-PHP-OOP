@@ -49,7 +49,7 @@ if (empty($_GET["photo_id"])) {
           </div>
           <div class="form-group">
             <label>Description</label>
-            <textarea name="photo_description" class="form-control" cols="30" rows="10"><?php echo $photo->photo_description; ?></textarea>
+            <textarea name="photo_description" id="summernote" class="form-control" cols="30" rows="10"><?php echo $photo->photo_description; ?></textarea>
           </div>
         </div>
         <div class="photo__info">
