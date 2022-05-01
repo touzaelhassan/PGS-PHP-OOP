@@ -14,8 +14,8 @@ if (isset($_POST['create_user'])) {
     $user->last_name = $_POST['last_name'];
 
     $user->set_user_image($_FILES["user_image"]);
-
-    $user->save_user();
+    $user->upload_image();
+    $user->create_user();
   }
 }
 

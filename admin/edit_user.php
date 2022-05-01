@@ -20,9 +20,15 @@ if (isset($_POST["update_user"])) {
     $user->first_name = $_POST['first_name'];
     $user->last_name = $_POST['last_name'];
 
-    $user->set_user_image($_FILES["user_image"]);
-
-    $user->save_user();
+    if (empty($_FILES["user_image"])) {
+      $user->update_user();
+    } else {
+      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . $user->upload_directory . "/" . $user->user_image;
+      unlink($target_path);
+      $user->set_user_image($_FILES["user_image"]);
+      $user->upload_image($_FILES["user_image"]);
+      $user->update_user();
+    }
   }
 }
 
@@ -44,7 +50,7 @@ if (isset($_POST["update_user"])) {
           </div>
           <div class="form-group mb-3">
             <label class="mb-1">Password</label>
-            <input type="password" class="form-control" name="user_password">
+            <input type="password" class="form-control" value="<?php echo $user->user_password; ?>" name="user_password">
           </div>
           <div class="form-group mb-3">
             <label class="mb-1">User Image</label>

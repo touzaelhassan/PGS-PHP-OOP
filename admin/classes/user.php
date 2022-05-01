@@ -69,7 +69,7 @@ class User
   public function update_user()
   {
     global $database;
-    $sql = "UPDATE users SET user_name = '$this->user_name', user_password = '$this->user_password', first_name = '$this->first_name', last_name = '$this->last_name' WHERE user_id = $this->user_id ";
+    $sql = "UPDATE users SET user_name = '$this->user_name', user_password = '$this->user_password', user_image = '$this->user_image', first_name = '$this->first_name', last_name = '$this->last_name' WHERE user_id = $this->user_id ";
     $database->query($sql);
 
     if (mysqli_affected_rows($database->connection) == 1) {
@@ -86,7 +86,8 @@ class User
     $database->query($sql);
 
     if (mysqli_affected_rows($database->connection) == 1) {
-      return true;
+      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . $this->upload_directory . "/" . $this->user_image;
+      return unlink($target_path) ? true : false;
     } else {
       return false;
     }
@@ -98,6 +99,7 @@ class User
 
     $user_object->user_id = $db_user['user_id'];
     $user_object->user_name = $db_user['user_name'];
+    $user_object->user_password = $db_user['user_password'];
     $user_object->user_image = $db_user['user_image'];
     $user_object->first_name = $db_user['first_name'];
     $user_object->last_name = $db_user['last_name'];
@@ -129,46 +131,41 @@ class User
     }
   }
 
-  public function save_user()
+  public function upload_image()
   {
-    if ($this->user_id) {
-      $this->update_user();
+
+    if (!empty($this->custom_errors)) {
+      echo $this->custom_errors[0];
+      return false;
+    }
+
+    if (
+      empty($this->user_image) ||
+      empty($this->user_image_temp_path)
+    ) {
+      $this->custom_errors[] = "The file was not available";
+      echo $this->custom_errors[0];
+      return false;
+    }
+
+    $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . $this->upload_directory . "/" . $this->user_image;
+
+    if (file_exists($target_path)) {
+      $this->custom_errors[] = "The file $this->user_image already exists";
+      echo $this->custom_errors[0];
+      return false;
+    }
+
+    if (move_uploaded_file($this->user_image_temp_path, $target_path)) {
+      unset($this->user_image_temp_path);
+      return true;
     } else {
-
-      if (!empty($this->custom_errors)) {
-        echo $this->custom_errors[0];
-        return false;
-      }
-
-      if (
-        empty($this->user_image) ||
-        empty($this->user_image_temp_path)
-      ) {
-        $this->custom_errors[] = "The file was not available";
-        echo $this->custom_errors[0];
-        return false;
-      }
-
-      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . $this->upload_directory . "/" . $this->user_image;
-
-      if (file_exists($target_path)) {
-        $this->custom_errors[] = "The file $this->user_image already exists";
-        echo $this->custom_errors[0];
-        return false;
-      }
-
-      if (move_uploaded_file($this->user_image_temp_path, $target_path)) {
-        if ($this->create_user()) {
-          unset($this->user_image_temp_path);
-          return true;
-        }
-      } else {
-        $this->custom_errors[] = "The file directory probably does not have permissions";
-        echo $this->custom_errors[0];
-        return false;
-      }
+      $this->custom_errors[] = "The file directory probably does not have permissions";
+      echo $this->custom_errors[0];
+      return false;
     }
   }
+
 
   public static function verify_user($user_name, $user_password)
   {
