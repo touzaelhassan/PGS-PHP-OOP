@@ -10,12 +10,26 @@ class User
   public $last_name;
 
   public $upload_directory = "images";
+  public $user_image_temp_path;
   public $image_placeholder = "https://i.pravatar.cc/100";
+
+  public $custom_errors = [];
+  public $upload_errors = [
+    UPLOAD_ERR_OK => "There is no error, the file uploaded with success",
+    UPLOAD_ERR_INI_SIZE => "The uploaded file exceeds the upload_max_filesize directive",
+    UPLOAD_ERR_FORM_SIZE => "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form",
+    UPLOAD_ERR_PARTIAL => "The uploaded file was only partially uploaded",
+    UPLOAD_ERR_NO_FILE => "No file was uploaded",
+    UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder",
+    UPLOAD_ERR_CANT_WRITE => "Failed to write file to disk",
+    UPLOAD_ERR_CANT_WRITE => "Failed to write file to disk",
+    UPLOAD_ERR_EXTENSION => " A PHP extension stopped the file upload",
+  ];
 
   public function create_user()
   {
     global $database;
-    $sql = "INSERT INTO users (user_name, user_password, user_image, first_name, last_name) VALUES ('$this->user_name', '$this->user_password', '$this->user_image', $this->first_name', '$this->last_name')";
+    $sql = "INSERT INTO users (user_name, user_password, user_image, first_name, last_name) VALUES ('$this->user_name', '$this->user_password', '$this->user_image', '$this->first_name', '$this->last_name') ";
     $query = $database->query($sql);
 
     if ($query) {
@@ -23,15 +37,6 @@ class User
       return true;
     } else {
       return false;
-    }
-  }
-
-  public function user_image_path()
-  {
-    if ($this->user_image) {
-      return $this->upload_directory . "/" . $this->user_image;
-    } else {
-      return $this->image_placeholder;
     }
   }
 
@@ -98,6 +103,71 @@ class User
     $user_object->last_name = $db_user['last_name'];
 
     return $user_object;
+  }
+
+
+  public function user_image_path()
+  {
+    if ($this->user_image) {
+      return $this->upload_directory . "/" . $this->user_image;
+    } else {
+      return $this->image_placeholder;
+    }
+  }
+
+  public function set_user_image($file)
+  {
+    if (empty($file) || !$file || !is_array($file)) {
+      $this->custom_errors[] = "There was no file uploaded here";
+      return false;
+    } elseif ($file["error"] != 0) {
+      $this->custom_errors[] = $this->upload_errors[$file["error"]];
+      return false;
+    } else {
+      $this->user_image = $file["name"];
+      $this->user_image_temp_path = $file["tmp_name"];
+    }
+  }
+
+  public function save_user()
+  {
+    if ($this->user_id) {
+      $this->update_user();
+    } else {
+
+      if (!empty($this->custom_errors)) {
+        echo $this->custom_errors[0];
+        return false;
+      }
+
+      if (
+        empty($this->user_image) ||
+        empty($this->user_image_temp_path)
+      ) {
+        $this->custom_errors[] = "The file was not available";
+        echo $this->custom_errors[0];
+        return false;
+      }
+
+      $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . $this->upload_directory . "/" . $this->user_image;
+
+      if (file_exists($target_path)) {
+        $this->custom_errors[] = "The file $this->user_image already exists";
+        echo $this->custom_errors[0];
+        return false;
+      }
+
+      if (move_uploaded_file($this->user_image_temp_path, $target_path)) {
+        if ($this->create_user()) {
+          unset($this->user_image_temp_path);
+          return true;
+        }
+      } else {
+        $this->custom_errors[] = "The file directory probably does not have permissions";
+        echo $this->custom_errors[0];
+        return false;
+      }
+    }
   }
 
   public static function verify_user($user_name, $user_password)

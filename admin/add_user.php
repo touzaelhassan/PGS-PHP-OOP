@@ -12,9 +12,10 @@ if (isset($_POST['create_user'])) {
     $user->user_password = $_POST['user_password'];
     $user->first_name = $_POST['first_name'];
     $user->last_name = $_POST['last_name'];
-    echo "<pre>";
-    print_r($user);
-    echo "</pre>";
+
+    $user->set_user_image($_FILES["user_image"]);
+
+    $user->save_user();
   }
 }
 
