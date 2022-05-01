@@ -24,7 +24,9 @@ if (isset($_POST["update_user"])) {
       $user->update_user();
     } else {
       $target_path = "C:/xampp/htdocs/PGS-PHP-OOP/admin/" . $user->upload_directory . "/" . $user->user_image;
-      unlink($target_path);
+      if (is_file($target_path)) {
+        unlink($target_path);
+      }
       $user->set_user_image($_FILES["user_image"]);
       $user->upload_image($_FILES["user_image"]);
       $user->update_user();
