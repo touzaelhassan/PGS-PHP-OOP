@@ -19,6 +19,8 @@
             <th>Photo</th>
             <th>Name</th>
             <th>Size</th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -26,16 +28,11 @@
             <tr>
               <td><?php echo $photo->photo_id; ?></td>
               <td><?php echo $photo->photo_title; ?></td>
-              <td>
-                <img src="<?php echo Photo::$upload_directory . "/" . $photo->photo_file_name; ?>" class="table__photo">
-                <div class="photo__links">
-                  <a href="#">VIEW</a>
-                  <a href="edit_photo.php?photo_id=<?php echo $photo->photo_id; ?>">UPDATE</a>
-                  <a href="delete_photo.php?photo_id=<?php echo $photo->photo_id; ?>">DELETE</a>
-                </div>
-              </td>
+              <td><img src="<?php echo Photo::$upload_directory . "/" . $photo->photo_file_name; ?>" class="table__photo"></td>
               <td><?php echo $photo->photo_file_name; ?></td>
               <td><?php echo $photo->photo_size; ?></td>
+              <td><a href="edit_photo.php?photo_id=<?php echo $photo->photo_id; ?>" class="btn btn-success btn-sm">UPDATE</a></td>
+              <td><a href="delete_photo.php?photo_id=<?php echo $photo->photo_id; ?>" class="btn btn-danger btn-sm">DELETE</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
