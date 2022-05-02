@@ -19,4 +19,13 @@ class Comment
       return false;
     }
   }
+
+  public static function get_comments($photo_id)
+  {
+    global $database;
+    $sql = "SELECT * FROM comments WHERE photo_id = '$photo_id' ORDER BY photo_id ASC";
+    $sql = "SELECT * FROM users";
+    $query = $database->query($sql);
+    $comments =  mysqli_fetch_all($query, MYSQLI_ASSOC);
+  }
 }
