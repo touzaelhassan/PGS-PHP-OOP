@@ -1,7 +1,8 @@
+<?php include './admin/classes/session.php'; ?>
 <?php include './admin/classes/database.php'; ?>
 <?php include './admin/classes/user.php'; ?>
 <?php include './admin/classes/photo.php'; ?>
-<?php include './admin/classes/session.php'; ?>
+<?php include './admin/classes/comment.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
