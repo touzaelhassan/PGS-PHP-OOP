@@ -7,14 +7,14 @@ if (isset($_GET["photo_id"])) {
 
 $photo = Photo::get_photo_by_id($photo_id);
 
-$comments = comment::get_comments($photo_id);
+$comments = comment::get_comments_photo_id($photo_id);
 
 
 if (isset($_POST["add_comment"])) {
   $comment_author = $_POST["comment_author"];
   $comment_body = $_POST["comment_body"];
 
-  $comment = Comment::instantiation_comment($photo->photo_id, $comment_author, $comment_body);
+  $comment = Comment::instantiation_comment(null, $photo->photo_id, $comment_author, $comment_body);
 
   if ($comment && $comment->create_comment()) {
     header("location: photo.php?photo_id=$photo->photo_id");

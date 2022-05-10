@@ -21,7 +21,23 @@ class Comment
     }
   }
 
-  public static function get_comments($photo_id)
+  public static function get_comments()
+  {
+    global $database;
+    $sql = "SELECT * FROM comments";
+    $query = $database->query($sql);
+    $comments =  mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+    $array_of_comment_objects = [];
+
+    foreach ($comments as $comment) {
+      $array_of_comment_objects[] = self::instantiation_comment($comment['comment_id'], $comment['photo_id'], $comment['comment_author'], $comment['comment_body']);
+    }
+
+    return $array_of_comment_objects;
+  }
+
+  public static function get_comments_photo_id($photo_id)
   {
     global $database;
     $sql = "SELECT * FROM comments WHERE photo_id = '$photo_id' ORDER BY photo_id ASC";
@@ -31,16 +47,19 @@ class Comment
     $array_of_comment_objects = [];
 
     foreach ($comments as $comment) {
-      $array_of_comment_objects[] = self::instantiation_comment($comment['photo_id'], $comment['comment_author'], $comment['comment_body']);
+      $array_of_comment_objects[] = self::instantiation_comment($comment['comment_id'], $comment['photo_id'], $comment['comment_author'], $comment['comment_body']);
     }
 
     return $array_of_comment_objects;
   }
 
-  public static function instantiation_comment($photo_id, $comment_author, $comment_body)
+  public static function instantiation_comment($comment_id, $photo_id, $comment_author, $comment_body)
   {
     if (!empty($photo_id) && !empty($comment_author) && !empty($comment_body)) {
       $comment = new Comment();
+      if (isset($comment_id)) {
+        $comment->comment_id = $comment_id;
+      }
       $comment->photo_id = $photo_id;
       $comment->comment_author = $comment_author;
       $comment->comment_body = $comment_body;

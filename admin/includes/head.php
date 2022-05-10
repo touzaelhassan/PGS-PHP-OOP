@@ -1,6 +1,7 @@
 <?php include './classes/database.php'; ?>
 <?php include './classes/user.php'; ?>
 <?php include './classes/photo.php'; ?>
+<?php include './classes/comment.php'; ?>
 <?php include './classes/session.php'; ?>
 
 <!DOCTYPE html>
