@@ -53,6 +53,24 @@ class Comment
     return $array_of_comment_objects;
   }
 
+  public static function get_comment_by_id($comment_id)
+  {
+    global $database;
+    $sql = "SELECT * FROM comments WHERE comment_id = $comment_id";
+    $query = $database->query($sql);
+    $comment = mysqli_fetch_assoc($query);
+
+    return self::instantiation_comment($comment['comment_id'], $comment['photo_id'], $comment['comment_author'], $comment['comment_body']);
+  }
+
+  public function delete_comment()
+  {
+    global $database;
+    $sql = "DELETE FROM comments WHERE comment_id = $this->comment_id";
+    $database->query($sql);
+  }
+
+
   public static function instantiation_comment($comment_id, $photo_id, $comment_author, $comment_body)
   {
     if (!empty($photo_id) && !empty($comment_author) && !empty($comment_body)) {

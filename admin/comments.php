@@ -27,7 +27,7 @@
               <td><?php echo $comment->photo_id; ?></td>
               <td><?php echo $comment->comment_author; ?></td>
               <td><?php echo $comment->comment_body; ?></td>
-              <td><a href="delete_user.php?user_id=<?php  ?>" class="btn btn-danger btn-sm">DELETE</a></td>
+              <td><a href="delete_comment.php?comment_id=<?php echo $comment->comment_id;  ?>" class="btn btn-danger btn-sm">DELETE</a></td>
             </tr>
           <?php endforeach ?>
         </tbody>
