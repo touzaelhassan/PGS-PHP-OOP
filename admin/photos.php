@@ -19,6 +19,8 @@
             <th>Photo</th>
             <th>Name</th>
             <th>Size</th>
+            <th>View</th>
+            <th>Comments</th>
             <th>Update</th>
             <th>Delete</th>
           </tr>
@@ -31,6 +33,12 @@
               <td><img src="<?php echo Photo::$upload_directory . "/" . $photo->photo_file_name; ?>" class="table__photo"></td>
               <td><?php echo $photo->photo_file_name; ?></td>
               <td><?php echo $photo->photo_size; ?></td>
+              <td><a href="../photo.php?photo_id=<?php echo $photo->photo_id; ?>" class="btn btn-primary btn-sm">VIEW</a></td>
+              <td>
+                <a href="photo_comments.php?photo_id=<?php echo $photo->photo_id; ?>">
+                  <?php echo count(Comment::get_comments_photo_id($photo->photo_id)) ?>
+                </a>
+              </td>
               <td><a href="edit_photo.php?photo_id=<?php echo $photo->photo_id; ?>" class="btn btn-success btn-sm">UPDATE</a></td>
               <td><a href="delete_photo.php?photo_id=<?php echo $photo->photo_id; ?>" class="btn btn-danger btn-sm">DELETE</a></td>
             </tr>
