@@ -5,6 +5,7 @@
 <?php
 
 if (isset($_POST["upload"])) {
+
   $photo_title = $_POST["photo_title"];
 
   $photo = new Photo();
