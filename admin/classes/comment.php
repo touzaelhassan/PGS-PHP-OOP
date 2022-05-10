@@ -25,9 +25,16 @@ class Comment
   {
     global $database;
     $sql = "SELECT * FROM comments WHERE photo_id = '$photo_id' ORDER BY photo_id ASC";
-    $sql = "SELECT * FROM users";
     $query = $database->query($sql);
     $comments =  mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+    $array_of_comment_objects = [];
+
+    foreach ($comments as $comment) {
+      $array_of_comment_objects[] = self::instantiation_comment($comment['photo_id'], $comment['comment_author'], $comment['comment_body']);
+    }
+
+    return $array_of_comment_objects;
   }
 
   public static function instantiation_comment($photo_id, $comment_author, $comment_body)
